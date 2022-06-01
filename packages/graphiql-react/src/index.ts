@@ -113,6 +113,8 @@ export {
   useDragResize,
 };
 
+export * from './icons';
+
 export type {
   // editor
   EditorContextType,
