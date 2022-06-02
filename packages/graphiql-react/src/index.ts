@@ -70,6 +70,7 @@ import './style/markdown.css';
 import './style/deprecation.css';
 
 export * from './icons';
+export * from './toolbar';
 export * from './ui';
 
 export {
