@@ -1,7 +1,11 @@
 import _ChevronDownIcon from './chevron-down.svg';
 import _ChevronUpIcon from './chevron-up.svg';
+import _DocsIcon from './docs.svg';
+import _HistoryIcon from './history.svg';
+import _KeyboardShortcutIcon from './keyboard-shortcut.svg';
 import _PlayIcon from './play.svg';
 import _PrettifyIcon from './prettify.svg';
+import _SettingsIcon from './settings.svg';
 import _StopIcon from './stop.svg';
 
 export const ChevronDownIcon = generateIcon(
@@ -9,8 +13,15 @@ export const ChevronDownIcon = generateIcon(
   'chevron down icon',
 );
 export const ChevronUpIcon = generateIcon(_ChevronUpIcon, 'chevron up icon');
+export const DocsIcon = generateIcon(_DocsIcon, 'docs icon');
+export const HistoryIcon = generateIcon(_HistoryIcon, 'history icon');
+export const KeyboardShortcutIcon = generateIcon(
+  _KeyboardShortcutIcon,
+  'keyboard shortcut icon',
+);
 export const PlayIcon = generateIcon(_PlayIcon, 'play icon');
 export const PrettifyIcon = generateIcon(_PrettifyIcon, 'prettify icon');
+export const SettingsIcon = generateIcon(_SettingsIcon, 'settings icon');
 export const StopIcon = generateIcon(_StopIcon, 'stop icon');
 
 function generateIcon(RawComponent: any, title: string) {
