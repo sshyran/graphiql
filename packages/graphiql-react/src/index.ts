@@ -69,6 +69,9 @@ import './style/root.css';
 import './style/markdown.css';
 import './style/deprecation.css';
 
+export * from './icons';
+export * from './ui';
+
 export {
   // editor
   EditorContext,
@@ -112,8 +115,6 @@ export {
   // utility/resize
   useDragResize,
 };
-
-export * from './icons';
 
 export type {
   // editor
