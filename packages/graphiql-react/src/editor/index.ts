@@ -1,5 +1,11 @@
 import { onHasCompletion } from './completion';
-import { ImagePreview } from './components';
+import {
+  HeaderEditor,
+  ImagePreview,
+  QueryEditor,
+  ResponseEditor,
+  VariableEditor,
+} from './components';
 import {
   EditorContext,
   EditorContextProvider,
@@ -27,10 +33,13 @@ import type { TabsState } from './tabs';
 import type { UseVariableEditorArgs } from './variable-editor';
 
 export {
-  onHasCompletion,
-  ImagePreview,
   EditorContext,
   EditorContextProvider,
+  HeaderEditor,
+  ImagePreview,
+  onHasCompletion,
+  QueryEditor,
+  ResponseEditor,
   useAutoCompleteLeafs,
   useCopyQuery,
   useEditorContext,
@@ -40,6 +49,7 @@ export {
   useQueryEditor,
   useResponseEditor,
   useVariableEditor,
+  VariableEditor,
 };
 
 export type {
