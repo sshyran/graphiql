@@ -21,12 +21,6 @@
   background-color: var(--color-neutral-0);
 }
 
-/* The response view */
-.graphiql-container .graphiql-response {
-  flex: 1;
-  position: relative;
-}
-
 /* The query editor and the toolbar */
 .graphiql-container .graphiql-query-editor {
   border-bottom: 1px solid var(--color-neutral-15);
@@ -100,6 +94,19 @@
 .graphiql-container .graphiql-editor-tool {
   flex: 1;
   padding: var(--px-16);
+}
+
+/* The response view */
+.graphiql-container .graphiql-response {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+}
+
+/* The footer below the response view */
+.graphiql-container .graphiql-footer {
+  border-top: 1px solid var(--color-neutral-15);
 }
 
 /* Generic loading spinner */
