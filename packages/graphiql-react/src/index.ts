@@ -28,6 +28,7 @@ import {
   useExplorerContext,
 } from './explorer';
 import {
+  History,
   HistoryContext,
   HistoryContextProvider,
   useHistoryContext,
@@ -101,6 +102,7 @@ export {
   ExplorerContextProvider,
   useExplorerContext,
   // history
+  History,
   HistoryContext,
   HistoryContextProvider,
   useHistoryContext,
