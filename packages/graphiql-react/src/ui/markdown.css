@@ -6,6 +6,8 @@
  *   (field description any optionally deprecation reason).
  */
 
+.graphiql-markdown-description,
+.graphiql-markdown-deprecation,
 .CodeMirror-hint-information-description,
 .CodeMirror-hint-information-deprecation-reason,
 .CodeMirror-info .info-description,
@@ -56,8 +58,17 @@
     max-height: 120px;
     max-width: 100%;
   }
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
 }
 
+.graphiql-markdown-description,
 .CodeMirror-hint-information-description,
 .CodeMirror-info .info-description {
   & a {
@@ -78,8 +89,13 @@
     background-color: var(--color-neutral-7);
     color: var(--color-neutral-100);
   }
+
+  & > * {
+    margin: var(--px-12) 0;
+  }
 }
 
+.graphiql-markdown-deprecation,
 .CodeMirror-hint-information-deprecation-reason,
 .CodeMirror-info .info-deprecation {
   & a {
@@ -95,4 +111,12 @@
   & pre {
     background-color: var(--color-orche-background-dark);
   }
+
+  & > * {
+    margin: var(--px-8) 0;
+  }
+}
+
+.graphiql-markdown-preview > :not(:first-child) {
+  display: none;
 }

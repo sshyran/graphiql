@@ -5,19 +5,19 @@
  *  LICENSE file in the root directory of this source tree.
  */
 
-import React, { ReactNode } from 'react';
+import {
+  ChevronLeftIcon,
+  useExplorerContext,
+  useSchemaContext,
+} from '@graphiql/react';
 import { isType } from 'graphql';
-import { useExplorerContext, useSchemaContext } from '@graphiql/react';
+import React, { ReactNode } from 'react';
 
 import FieldDoc from './DocExplorer/FieldDoc';
 import SchemaDoc from './DocExplorer/SchemaDoc';
-import SearchBox from './DocExplorer/SearchBox';
+// import SearchBox from './DocExplorer/SearchBox';
 import SearchResults from './DocExplorer/SearchResults';
 import TypeDoc from './DocExplorer/TypeDoc';
-
-type DocExplorerProps = {
-  onClose?(): void;
-};
 
 /**
  * DocExplorer
@@ -25,14 +25,14 @@ type DocExplorerProps = {
  * Shows documentations for GraphQL definitions from the schema.
  *
  */
-export function DocExplorer(props: DocExplorerProps) {
+export function DocExplorer() {
   const {
     fetchError,
     isFetching,
     schema,
     validationErrors,
   } = useSchemaContext({ nonNull: true });
-  const { explorerNavStack, hide, pop, showSearch } = useExplorerContext({
+  const { explorerNavStack, pop } = useExplorerContext({
     nonNull: true,
   });
 
@@ -40,10 +40,10 @@ export function DocExplorer(props: DocExplorerProps) {
 
   let content: ReactNode = null;
   if (fetchError) {
-    content = <div className="error-container">Error fetching schema</div>;
+    content = <div className="graphiql-error">Error fetching schema</div>;
   } else if (validationErrors) {
     content = (
-      <div className="error-container">
+      <div className="graphiql-error">
         Schema is invalid: {validationErrors[0].message}
       </div>
     );
@@ -53,7 +53,7 @@ export function DocExplorer(props: DocExplorerProps) {
   } else if (!schema) {
     // Schema is null when it explicitly does not exist, typically due to
     // an error during introspection.
-    content = <div className="error-container">No Schema Available</div>;
+    content = <div>No GraphQL schema available</div>;
   } else if (navItem.search) {
     content = <SearchResults />;
   } else if (explorerNavStack.length === 1) {
@@ -64,9 +64,9 @@ export function DocExplorer(props: DocExplorerProps) {
     content = <FieldDoc />;
   }
 
-  const shouldSearchBoxAppear =
-    explorerNavStack.length === 1 ||
-    (isType(navItem.def) && 'getFields' in navItem.def);
+  // const shouldSearchBoxAppear =
+  //   explorerNavStack.length === 1 ||
+  //   (isType(navItem.def) && 'getFields' in navItem.def);
 
   let prevName;
   if (explorerNavStack.length > 1) {
@@ -75,41 +75,33 @@ export function DocExplorer(props: DocExplorerProps) {
 
   return (
     <section
-      className="doc-explorer"
-      key={navItem.name}
+      className="graphiql-doc-explorer"
       aria-label="Documentation Explorer">
-      <div className="doc-explorer-title-bar">
-        {prevName && (
-          <button
-            className="doc-explorer-back"
-            onClick={pop}
-            aria-label={`Go back to ${prevName}`}>
-            {prevName}
-          </button>
-        )}
-        <div className="doc-explorer-title">
-          {navItem.title || navItem.name}
-        </div>
-        <div className="doc-explorer-rhs">
-          <button
-            className="docExplorerHide"
-            onClick={() => {
-              hide();
-              props.onClose?.();
-            }}
-            aria-label="Close Documentation Explorer">
-            {'\u2715'}
-          </button>
+      <div className="graphiql-doc-explorer-header">
+        <div className="graphiql-doc-explorer-header-content">
+          {prevName && (
+            <a
+              href="#"
+              className="graphiql-doc-explorer-back"
+              onClick={pop}
+              aria-label={`Go back to ${prevName}`}>
+              <ChevronLeftIcon />
+              {prevName}
+            </a>
+          )}
+          <div className="graphiql-doc-explorer-title">
+            {navItem.title || navItem.name}
+          </div>
         </div>
       </div>
-      <div className="doc-explorer-contents">
-        {shouldSearchBoxAppear && (
+      <div className="graphiql-doc-explorer-content">
+        {/* {shouldSearchBoxAppear && (
           <SearchBox
             value={navItem.search}
             placeholder={`Search ${navItem.name}...`}
             onSearch={showSearch}
           />
-        )}
+        )} */}
         {content}
       </div>
     </section>

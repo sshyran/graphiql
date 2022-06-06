@@ -8,3 +8,12 @@ export function UnstyledButton(props: JSX.IntrinsicElements['button']) {
     />
   );
 }
+
+export function Button(props: JSX.IntrinsicElements['button']) {
+  return (
+    <button
+      {...props}
+      className={`graphiql-button ${props.className || ''}`.trim()}
+    />
+  );
+}

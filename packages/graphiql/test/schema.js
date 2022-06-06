@@ -19,6 +19,7 @@ const {
   GraphQLString,
   GraphQLID,
   GraphQLList,
+  Kind,
 } = require('graphql');
 
 // Test Schema

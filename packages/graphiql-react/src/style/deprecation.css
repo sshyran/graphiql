@@ -23,16 +23,4 @@
 .CodeMirror-hint-information-deprecation-reason,
 .CodeMirror-info .info-deprecation-reason {
   margin-top: var(--px-6);
-
-  & > * {
-    margin: var(--px-8) 0;
-  }
-
-  & > :first-child {
-    margin-top: 0;
-  }
-
-  & > :last-child {
-    margin-bottom: 0;
-  }
 }

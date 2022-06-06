@@ -23,8 +23,14 @@ import {
   useExecutionContext,
 } from './execution';
 import {
+  Argument,
+  DefaultValue,
+  Directive,
   ExplorerContext,
   ExplorerContextProvider,
+  ExplorerSection,
+  FieldLink,
+  TypeLink,
   useExplorerContext,
 } from './explorer';
 import {
@@ -67,7 +73,6 @@ import type { SchemaContextType } from './schema';
 import type { StorageContextType } from './storage';
 
 import './style/root.css';
-import './style/markdown.css';
 import './style/deprecation.css';
 
 export * from './icons';
@@ -98,8 +103,14 @@ export {
   ExecutionContextProvider,
   useExecutionContext,
   // explorer
+  Argument,
+  DefaultValue,
+  Directive,
   ExplorerContext,
   ExplorerContextProvider,
+  ExplorerSection,
+  FieldLink,
+  TypeLink,
   useExplorerContext,
   // history
   History,
