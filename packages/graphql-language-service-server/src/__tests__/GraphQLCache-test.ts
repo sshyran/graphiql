@@ -7,6 +7,11 @@
  *
  */
 
+// jest.mock('cross-undici-fetch', () => ({
+//   fetch: require('fetch-mock').fetchHandler,
+//   AbortController: global.AbortController,
+// }));
+
 jest.mock('cross-undici-fetch', () => ({
   fetch: require('fetch-mock').fetchHandler,
   AbortController: global.AbortController,
