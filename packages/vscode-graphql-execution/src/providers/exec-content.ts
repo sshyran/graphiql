@@ -15,10 +15,8 @@ import {
   import { loadConfig, GraphQLProjectConfig } from "graphql-config"
   import { visit, VariableDefinitionNode } from "graphql"
   import { NetworkHelper } from "../helpers/network"
-  import { SourceHelper, GraphQLScalarTSType } from "../helpers/source"
+  import { SourceHelper } from "../helpers/source"
   import type { Endpoints, Endpoint } from "graphql-config/typings/extensions/endpoints"
-  
-  export type UserVariables = { [key: string]: GraphQLScalarTSType }
   
   // TODO: remove residue of previewHtml API https://github.com/microsoft/vscode/issues/62630
   // We update the panel directly now in place of a event based update API (we might make a custom event updater and remove panel dep though)

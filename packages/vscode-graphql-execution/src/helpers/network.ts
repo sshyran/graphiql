@@ -14,8 +14,9 @@ import {
   CombinedError,
   createClient,
   defaultExchanges,
-  subscriptionExchange,
+  subscriptionExchange
 } from '@urql/core';
+
 
 import {
   ExtractedTemplateLiteral,
@@ -23,7 +24,6 @@ import {
   getFragmentDependenciesForAST,
 } from './source';
 
-import { UserVariables } from '../providers/exec-content';
 
 export class NetworkHelper {
   private outputChannel: OutputChannel;
@@ -68,7 +68,6 @@ export class NetworkHelper {
 
     return createClient({
       url: endpoint.url,
-      // @ts-expect-error
       fetch,
       fetchOptions: {
         headers: endpoint.headers as HeadersInit,
@@ -158,12 +157,15 @@ export class NetworkHelper {
           );
         } else {
           if (operation === 'query') {
+            // TODO: fix this typescript error, upgrade urql
             pipe(
+              // @ts-expect-error
               urqlClient.query(parsedOperation, variables),
               subscribe(subscriber),
             );
           } else {
             pipe(
+              // @ts-expect-error
               urqlClient.mutation(parsedOperation, variables),
               subscribe(subscriber),
             );
@@ -177,7 +179,7 @@ export class NetworkHelper {
 export interface ExecuteOperationOptions {
   endpoint: Endpoint;
   literal: ExtractedTemplateLiteral;
-  variables: UserVariables;
+  variables: object;
   updateCallback: (data: string, operation: string) => void;
   projectConfig: GraphQLProjectConfig;
 }

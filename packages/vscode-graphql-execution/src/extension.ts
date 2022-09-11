@@ -43,10 +43,9 @@ export function activate(context: ExtensionContext) {
   )
   context.subscriptions.push(commandShowOutputChannel)
 
-  const settings = workspace.getConfiguration("vscode-graphql-execution")
+  const settings = workspace.getConfiguration("vscode-graphql.execution")
 
   const registerCodeLens = () => {
-    console.log('registering codelens!')
     context.subscriptions.push(
       languages.registerCodeLensProvider(
         [
@@ -67,7 +66,7 @@ export function activate(context: ExtensionContext) {
   }
 
   workspace.onDidChangeConfiguration(() => {
-    const newSettings = workspace.getConfiguration("vscode-graphql-execution")
+    const newSettings = workspace.getConfiguration("vscode-graphql.execution")
     if (newSettings.showExecCodeLens) {
       registerCodeLens()
     }

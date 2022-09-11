@@ -12,7 +12,7 @@ build({
   minify: arg === '--minify',
   platform: 'node',
   outdir: 'out/',
-  external: ['vscode', './transpilers/swc.js', 'ts-node'],
+  external: ['vscode', './transpilers/swc.js'],
   format: 'cjs',
   sourcemap: "both",
   watch: isWatchMode,
@@ -25,7 +25,7 @@ build({
       logger.error(...errors);
     }
 
-    logger.log('successfully bundled vscode-graphql-executionution 🚀');
+    logger.log('successfully bundled vscode-graphql-execution 🚀');
 
     if (isWatchMode) {
       logger.log('watching... 🕰');
