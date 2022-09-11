@@ -12,9 +12,9 @@ build({
   minify: arg === '--minify',
   platform: 'node',
   outdir: 'out/',
-  external: ['vscode'],
+  external: ['vscode', './transpilers/swc.js', 'ts-node'],
   format: 'cjs',
-  sourcemap: true,
+  sourcemap: "both",
   watch: isWatchMode,
 })
   .then(({ errors, warnings }) => {

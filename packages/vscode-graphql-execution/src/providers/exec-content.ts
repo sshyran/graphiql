@@ -16,7 +16,7 @@ import {
   import { visit, VariableDefinitionNode } from "graphql"
   import { NetworkHelper } from "../helpers/network"
   import { SourceHelper, GraphQLScalarTSType } from "../helpers/source"
-  import type { Endpoints, Endpoint } from "graphql-config/extensions/endpoints"
+  import type { Endpoints, Endpoint } from "graphql-config/typings/extensions/endpoints"
   
   export type UserVariables = { [key: string]: GraphQLScalarTSType }
   
@@ -60,8 +60,9 @@ import {
           ...variables,
           [`${node.variable.name.value}`]: this.sourceHelper.typeCast(
             (await window.showInputBox({
+              title: 'Provide GraphQL Variables',
               ignoreFocusOut: true,
-              placeHolder: `Please enter the value for ${node.variable.name.value}`,
+              prompt: `Please enter the (${variableType}) value for $${node.variable.name.value}" `,
               validateInput: async (value: string) =>
                 this.sourceHelper.validate(value, variableType),
             })) as string,
@@ -104,6 +105,7 @@ import {
       )
       this.panel = panel
       this.rootDir = workspace.getWorkspaceFolder(Uri.file(literal.uri))
+      console.log(this.rootDir, 'constructor')
       this.literal = literal
       this.panel.webview.options = {
         enableScripts: true,
@@ -177,12 +179,13 @@ import {
     }
     async loadProvider() {
       try {
-        const rootDir = workspace.getWorkspaceFolder(Uri.file(this.literal.uri))
-        if (!rootDir) {
+        this.rootDir = workspace.getWorkspaceFolder(Uri.file(this.literal.uri))
+
+        if (!this.rootDir) {
           this.reportError("Error: this file is outside the workspace.")
           return
         } else {
-          const config = await loadConfig({ rootDir: rootDir!.uri.fsPath, legacy: true })
+          const config = await loadConfig({ rootDir: this.rootDir!.uri.path })
           let projectConfig = config?.getProjectForFile(this.literal.uri)
           if (!projectConfig) {
             return
@@ -236,12 +239,14 @@ import {
       }
     }
     async loadConfig() {
-      const rootDir = this.rootDir
-      if (!rootDir) {
+      this.rootDir = workspace.getWorkspaceFolder(Uri.file(this.literal.uri))
+
+      if (!this.rootDir) {
         this.reportError(`Error: this file is outside the workspace.`)
         return
       } else {
-        const config = await loadConfig({ rootDir: rootDir!.uri.fsPath })
+        console.log(this.rootDir)
+        const config = await loadConfig({ rootDir: this.rootDir!.uri.path })
         let projectConfig = config?.getProjectForFile(this.literal.uri)
   
         if (!projectConfig!.schema) {

@@ -141,6 +141,7 @@
     "wsrun": "^5.2.4"
   },
   "resolutions": {
-    "graphql-config": "4.3.0"
+    "graphql-config": "4.3.5",
+    "source-map-support": "0.5.16"
   }
 }

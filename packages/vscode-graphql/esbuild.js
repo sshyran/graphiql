@@ -11,7 +11,7 @@ build({
   minify: arg === '--minify',
   platform: 'node',
   outdir: 'out/',
-  external: ['vscode'],
+  external: ['vscode', './transpilers/swc.js'],
   format: 'cjs',
   sourcemap: true,
   watch: isWatchMode,

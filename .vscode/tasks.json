@@ -5,7 +5,9 @@
       "label": "watch-vscode",
       "type": "npm",
       "script": "watch-vscode",
-      "problemMatcher": ["$tsc-watch"],
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
       "isBackground": true,
       "presentation": {
         "reveal": "always"
@@ -14,6 +16,18 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "type": "npm",
+      "script": "watch-vscode-exec",
+      "group": "build",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "isBackground": true,
+
+      "label": "npm: watch-vscode-exec",
+      "detail": "concurrently --raw \"yarn tsc && yarn tsc --watch\" \"yarn workspace vscode-graphql-exec run compile --watch\""
     }
   ]
 }

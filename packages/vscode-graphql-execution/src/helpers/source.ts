@@ -9,7 +9,7 @@ import {
   OperationDefinitionNode,
   print,
 } from "graphql"
-import { GraphQLProjectConfig } from "graphql-config"
+import type { GraphQLProjectConfig } from "graphql-config"
 import { ASTNode, DocumentNode } from "graphql/language"
 
 export type FragmentInfo = {
@@ -155,8 +155,8 @@ export class SourceHelper {
     const documents: ExtractedTemplateLiteral[] = []
 
     if (document.languageId === "graphql") {
-      const text = document.getText()
-      processGraphQLString(text, 0)
+      const t = document.getText()
+      processGraphQLString(t, 0)
       return documents
     }
 
@@ -169,7 +169,7 @@ export class SourceHelper {
         const contents = result[1]
 
         // https://regex101.com/r/KFMXFg/2
-        if (Boolean(contents.match("/${(.+)?}/g"))) {
+        if (contents.match("/${(.+)?}/g")) {
           // We are ignoring operations with template variables for now
           continue
         }
@@ -180,9 +180,9 @@ export class SourceHelper {
     })
     return documents
 
-    function processGraphQLString(text: string, offset: number) {
+    function processGraphQLString(textToProcess: string, offset: number) {
       try {
-        const ast = parse(text)
+        const ast = parse(textToProcess)
         const operations = ast.definitions.filter(
           def => def.kind === "OperationDefinition",
         )
@@ -198,7 +198,7 @@ export class SourceHelper {
           }
           const content = print(filteredAst)
           documents.push({
-            content: content,
+            content,
             uri: document.uri.path,
             position: document.positionAt(op.loc.start + offset),
             definition: op,
