@@ -1,13 +1,11 @@
 out/test/**
 src/**
 .gitignore
+dist/**
 
+!node_modules
 
-node_modules/**
-!node_modules/ts-node/**
-!node_modules/@swc/**
-
-tsconfig.json
+**/tsconfig.json
 .github
 yarn-error.log
 tsconfig.tsbuildinfo

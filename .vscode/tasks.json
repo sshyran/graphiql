@@ -5,9 +5,7 @@
       "label": "watch-vscode",
       "type": "npm",
       "script": "watch-vscode",
-      "problemMatcher": [
-        "$tsc-watch"
-      ],
+      "problemMatcher": ["$tsc-watch"],
       "isBackground": true,
       "presentation": {
         "reveal": "always"
@@ -21,9 +19,7 @@
       "type": "npm",
       "script": "watch-vscode-exec",
       "group": "build",
-      "problemMatcher": [
-        "$tsc-watch"
-      ],
+      "problemMatcher": ["$tsc-watch"],
       "isBackground": true,
 
       "label": "npm: watch-vscode-exec",

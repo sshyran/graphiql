@@ -106,6 +106,7 @@ chainable
 codegen
 dirpath
 envrc
+entrypoints
 eslintignore
 filesfor
 flowtests
@@ -154,7 +155,9 @@ typeof
 unfocus
 unnormalized
 unsubscribable
+urql
 websockets
+wonka
 
 
 // fonts

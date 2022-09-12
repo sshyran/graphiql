@@ -5,18 +5,17 @@ import { Agent } from 'https';
 import * as ws from 'ws';
 import { pipe, subscribe } from 'wonka';
 
-import type { Endpoint } from "graphql-config/typings/extensions/endpoints"
+import type { Endpoint } from 'graphql-config/typings/extensions/endpoints';
 
-import { OutputChannel, workspace } from 'vscode';
+import { OutputChannel, workspace, window } from 'vscode';
 import { GraphQLProjectConfig } from 'graphql-config';
 import { createClient as createWSClient, OperationResult } from 'graphql-ws';
 import {
   CombinedError,
   createClient,
   defaultExchanges,
-  subscriptionExchange
+  subscriptionExchange,
 } from '@urql/core';
-
 
 import {
   ExtractedTemplateLiteral,
@@ -24,6 +23,23 @@ import {
   getFragmentDependenciesForAST,
 } from './source';
 
+function getRejectUnauthorized() {
+  const activeEditor = window.activeTextEditor
+    ? window.activeTextEditor.document.uri
+    : null;
+
+  if (
+    (workspace.getConfiguration('vscode-graphql').has('rejectUnauthorized'),
+    activeEditor)
+  ) {
+    return workspace
+      .getConfiguration('vscode-graphql')
+      .get('rejectUnauthorized', activeEditor);
+  }
+  return workspace
+    .getConfiguration('vscode-graphql.execution')
+    .get('rejectUnauthorized', activeEditor);
+}
 
 export class NetworkHelper {
   private outputChannel: OutputChannel;
@@ -42,7 +58,7 @@ export class NetworkHelper {
     endpoint: Endpoint;
     updateCallback: (data: string, operation: string) => void;
   }) {
-    const { rejectUnauthorized } = workspace.getConfiguration('vscode-graphql');
+    const rejectUnauthorized = getRejectUnauthorized() as boolean;
     // this is a node specific setting that can allow requests against servers using self-signed certificates
     // it is similar to passing the nodejs env variable flag, except configured on a per-request basis here
     const agent = new Agent({ rejectUnauthorized });

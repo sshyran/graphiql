@@ -1,4 +1,4 @@
-Provides inline operation exection capability throughout code files. Used by `graphql.vscode-graphql` extension, but can be used standalone with `graphql.vscode-graphql-syntax` as well.
+Provides inline operation execution capability throughout code files. Used by `graphql.vscode-graphql` extension, but can be used standalone with `graphql.vscode-graphql-syntax` as well.
 
 Uses `@urql/core` under the hood.
 
@@ -8,21 +8,14 @@ Uses `@urql/core` under the hood.
 
 ![Codelens Example, showing Execute Query over a query](assets/images/codelens.png)
 
-
-
-
-
-
 ### Supports
 
-- `.graphql`/`.gql`/`.gqls`
+- `.graphql`/`.gql`/`.graphqls`
 - `.js`, `.jsx`
 - `.ts`, `.tsx`
 
-
-
-
 ### Coming Soon
+
 - [ ] Inline keyboard shortcut
 - [ ] Inline command palette option
 - [ ] Inline context menu option
@@ -40,15 +33,13 @@ exports default {
 `graphql.config.yml` or `.graphqlrc.yml`
 
 ```yaml
-schema: "https://localhost:4200"
+schema: 'https://localhost:4200'
 ```
 
 ## Advanced Configuration Examples
 
-
-Both of the following 
+Both of the following
 `.graphql.config.ts` examples should have the same effect, where the headers are used on schema fetch and successive requests
-
 
 ```ts
 exports default {
